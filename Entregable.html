@@ -1,0 +1,435 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Técnico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo-nav {
+            color: #e67e22;
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+
+        .menu-enlaces a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: 0.3s ease;
+        }
+
+        .menu-enlaces a:hover {
+            background-color: #e67e22;
+        }
+
+        .banner-principal {
+            background: linear-gradient(135deg, #2980b9, #2c3e50);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .banner-texto {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .banner-texto h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #f1c40f;
+        }
+
+        .banner-texto p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .seccion-wrapper {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .titulo-seccion span {
+            border-bottom: 4px solid #e67e22;
+            padding-bottom: 5px;
+        }
+
+        .galeria-carreras {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .tarjeta-curso {
+            background: #ffffff;
+            width: 320px;
+            border-radius: 8px;
+            border-top: 6px solid #2980b9;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tarjeta-curso:hover {
+            transform: translateY(-8px);
+            border-top: 6px solid #e67e22;
+        }
+
+        .detalle-curso {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .detalle-curso h3 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .contenedor-form {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            max-width: 750px;
+            margin: 0 auto;
+            border-left: 6px solid #e67e22;
+            border-top: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .grid-formulario {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .ancho-total {
+            grid-column: 1 / -1;
+        }
+
+        .grupo-campo {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .grupo-campo label {
+            font-weight: 600;
+            color: #34495e;
+            font-size: 14px;
+        }
+
+        .grupo-campo input, 
+        .grupo-campo select {
+            padding: 12px;
+            border: 1px solid #dcdde1;
+            border-radius: 6px;
+            background-color: #fdfdfd;
+            font-family: inherit;
+        }
+
+        .grupo-campo input:focus, 
+        .grupo-campo select:focus {
+            border-color: #2980b9;
+            outline: none;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.2);
+        }
+
+        .check-terminos {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .btn-accion {
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .btn-accion:hover {
+            background-color: #d35400;
+        }
+
+        #panel-mensaje {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #95a5a6;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-formulario {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .menu-enlaces a {
+                margin: 0 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-nav">INSTITUTO TÉCNICO</div>
+        <div class="menu-enlaces">
+            <a href="#inicio">Inicio</a>
+            <a href="#oferta">Oferta Académica</a>
+            <a href="#admision">Admisión</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="inicio" class="banner-principal">
+            <div class="banner-texto">
+                <h1>Construye tu futuro hoy</h1>
+                <p>
+                    Fórmate con los mejores profesionales en carreras de alta 
+                    demanda laboral. Nuestro compromiso es brindarte educación 
+                    técnica de excelencia para asegurar tu éxito.
+                </p>
+            </div>
+        </section>
+
+        <section id="oferta" class="seccion-wrapper">
+            <h2 class="titulo-seccion"><span>Nuestras Carreras</span></h2>
+
+            <div class="galeria-carreras">
+                <div class="tarjeta-curso">
+                    <div class="detalle-curso">
+                        <h3>Desarrollo de Software</h3>
+                        <p>Aprende lenguajes de programación, bases de datos y creación de aplicaciones modernas.</p>
+                    </div>
+                </div>
+
+                <div class="tarjeta-curso">
+                    <div class="detalle-curso">
+                        <h3>Administración Empresarial</h3>
+                        <p>Desarrolla visión estratégica para dirigir, organizar y potenciar negocios exitosos.</p>
+                    </div>
+                </div>
+
+                <div class="tarjeta-curso">
+                    <div class="detalle-curso">
+                        <h3>Electrónica Industrial</h3>
+                        <p>Domina el diseño de circuitos, sistemas automatizados y tecnología de vanguardia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="admision" class="seccion-wrapper">
+            <h2 class="titulo-seccion"><span>Proceso de Admisión</span></h2>
+
+            <div class="contenedor-form">
+                <form id="registroData" method="POST" action="#admision">
+                    <div class="grid-formulario">
+                        <div class="grupo-campo">
+                            <label for="inpNombres">Nombres:</label>
+                            <input type="text" id="inpNombres">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="inpApellidos">Apellidos:</label>
+                            <input type="text" id="inpApellidos">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="inpDni">Documento (DNI):</label>
+                            <input type="text" id="inpDni" maxlength="8">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="inpEdad">Edad:</label>
+                            <input type="number" id="inpEdad" min="15" max="80">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="inpTelefono">Teléfono / Celular:</label>
+                            <input type="tel" id="inpTelefono" maxlength="9">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="inpCorreo">Correo Electrónico:</label>
+                            <input type="email" id="inpCorreo">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="cboCarrera">Seleccione Carrera:</label>
+                            <select id="cboCarrera">
+                                <option value=""></option>
+                                <option value="software">Desarrollo de Software</option>
+                                <option value="administracion">Administración</option>
+                                <option value="electronica">Electrónica</option>
+                            </select>
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="cboModalidad">Modalidad de Estudio:</label>
+                            <select id="cboModalidad">
+                                <option value=""></option>
+                                <option value="presencial">Presencial (Campus)</option>
+                                <option value="virtual">Virtual (Online)</option>
+                            </select>
+                        </div>
+
+                        <div class="grupo-campo ancho-total">
+                            <label for="cboTurno">Horario Preferido:</label>
+                            <select id="cboTurno">
+                                <option value=""></option>
+                                <option value="mañana">Mañana (8:00 am - 1:00 pm)</option>
+                                <option value="tarde">Tarde (2:00 pm - 6:00 pm)</option>
+                                <option value="noche">Noche (7:00 pm - 10:30 pm)</option>
+                            </select>
+                        </div>
+
+                        <div class="ancho-total">
+                            <label class="check-terminos">
+                                <input type="checkbox" id="chkAcepto"> 
+                                Confirmo que los datos ingresados son correctos y acepto las políticas.
+                            </label>
+                        </div>
+
+                        <div class="ancho-total">
+                            <button type="submit" class="btn-accion">Procesar Inscripción</button>
+                            <div id="panel-mensaje"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Instituto Técnico Superior.</p>
+        <p>Desarrollado para el proyecto de Diseño Web.</p>
+    </footer>
+
+    <script>
+        document.getElementById("registroData").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            let nombres = document.getElementById("inpNombres").value.trim();
+            let apellidos = document.getElementById("inpApellidos").value.trim();
+            let dni = document.getElementById("inpDni").value.trim();
+            let edad = document.getElementById("inpEdad").value;
+            let celular = document.getElementById("inpTelefono").value.trim();
+            let correo = document.getElementById("inpCorreo").value.trim();
+            let carrera = document.getElementById("cboCarrera").value;
+            let modalidad = document.getElementById("cboModalidad").value;
+            let turno = document.getElementById("cboTurno").value;
+            let terms = document.getElementById("chkAcepto").checked;
+            
+            let cuadroSalida = document.getElementById("panel-mensaje");
+
+            if (!nombres || !apellidos || !dni || !edad || !celular || !correo || !carrera || !modalidad || !turno) {
+                cuadroSalida.textContent = "Por favor, no deje campos en blanco.";
+                cuadroSalida.style.color = "#c0392b";
+                return;
+            }
+
+            if (dni.length !== 8 || isNaN(dni)) {
+                cuadroSalida.textContent = "El DNI debe contener exactamente 8 números.";
+                cuadroSalida.style.color = "#c0392b";
+                return;
+            }
+
+            if (edad < 15 || edad > 80) {
+                cuadroSalida.textContent = "La edad permitida es entre 15 y 80 años.";
+                cuadroSalida.style.color = "#c0392b";
+                return;
+            }
+
+            if (celular.length !== 9 || isNaN(celular)) {
+                cuadroSalida.textContent = "Ingrese un número de celular válido de 9 dígitos.";
+                cuadroSalida.style.color = "#c0392b";
+                return;
+            }
+
+            if (!correo.includes("@") || !correo.includes(".")) {
+                cuadroSalida.textContent = "El correo electrónico no es válido.";
+                cuadroSalida.style.color = "#c0392b";
+                return;
+            }
+
+            if (!terms) {
+                cuadroSalida.textContent = "Debe aceptar las políticas para registrarse.";
+                cuadroSalida.style.color = "#c0392b";
+                return;
+            }
+
+            cuadroSalida.textContent = "Inscripción realizada con éxito. Pronto te contactaremos.";
+            cuadroSalida.style.color = "#27ae60";
+
+            document.getElementById("registroData").reset();
+        });
+    </script>
+</body>
+</html>
+
+```
